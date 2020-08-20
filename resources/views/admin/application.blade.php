@@ -34,5 +34,5 @@
     @endif
         
 </main>
-<a class="btn" href="/admin_top">戻る</a>
+<a class="btn btn-original" href="/admin_top">戻る</a>
 @endsection

@@ -1,17 +1,17 @@
 @charset "UTF-8";
-.btn {
-  display: block;
-  width: 150px;
-  -webkit-box-shadow: 1px 2px #000;
-          box-shadow: 1px 2px #000;
-  border: 1px #000 solid;
-  padding: 4px 16px;
-  margin-bottom: 8px;
+.btn-original {
+  width: 135px;
+  border: 1px solid #ccc;
+  background: #f1e767;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fdfbfb), to(#ebedee));
+  background: linear-gradient(to bottom, #fdfbfb 0%, #ebedee 100%);
+  -webkit-box-shadow: inset 1px 1px 1px #fff;
+  box-shadow: inset 1px 1px 1px #fff;
 }
 
-.btn:active {
-  -webkit-box-shadow: inset 2px 1px #000;
-          box-shadow: inset 2px 1px #000;
+.btn-original:active {
+  background: -webkit-gradient(linear, left bottom, left top, from(#fdfbfb), to(#ebedee));
+  background: linear-gradient(to top, #fdfbfb 0%, #ebedee 100%);
 }
 
 img {
@@ -19,15 +19,15 @@ img {
   vertical-align: bottom;
 }
 
-.font-sm, .sub-title, header .header_user_name, .chat_wrapper .chat__container {
-  font-size: 14px;
+.font-sm, .btn-original a, .sub-title, .chat_wrapper .chat__container {
+  font-size: 12px;
 }
 
 .font-md {
   font-size: 17px;
 }
 
-.font-lr, header .header_title {
+.font-lr {
   font-size: 17px;
 }
 
@@ -62,7 +62,7 @@ img {
 }
 
 .page-title {
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px #333;
   display: block;
 }
 
@@ -138,26 +138,18 @@ img {
   width: 100%;
 }
 
-header,
 footer {
   background-color: #333;
   color: #fff;
   width: 100%;
   text-align: center;
   padding: 16px;
-}
-
-header {
   height: 100px;
-  color: #fff;
-}
-
-header .header_user_name {
-  color: #fff;
 }
 
 .wrapper {
   width: 100%;
+  margin-top: 56px;
   padding-top: 32px;
   min-height: calc(100vh - 200px);
 }
@@ -170,29 +162,6 @@ header .header_user_name {
   padding: 16px;
 }
 
-footer {
-  height: 100px;
-}
-
-.side_menu {
-  width: 80%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  right: -80%;
-  background-color: #333;
-  color: #ddd;
-  -webkit-transition: -webkit-transform 1s ease;
-  transition: -webkit-transform 1s ease;
-  transition: transform 1s ease;
-  transition: transform 1s ease, -webkit-transform 1s ease;
-}
-
-.side_menu.is_open {
-  -webkit-transform: translateX(-80%);
-          transform: translateX(-80%);
-}
-
 .table_box {
   width: 100%;
   overflow-x: scroll;
@@ -201,6 +170,15 @@ footer {
 .table_box th,
 .table_box td {
   white-space: nowrap;
+}
+
+.fixed-top .dropdown-menu {
+  padding-right: 8px;
+}
+
+.btn-outline-secondary {
+  width: 100%;
+  margin: 4px;
 }
 
 .chat_wrapper {
@@ -221,7 +199,7 @@ footer {
   width: 100%;
   max-height: 400px;
   overflow-y: scroll;
-  border: black solid 2px;
+  border: #333 solid 2px;
 }
 
 .chat_wrapper .chat__container {
@@ -338,13 +316,16 @@ Stylesheet: 600px以上のタブレットやモニタで適用
 Stylesheet: 960px以上のモニタで適用
 
 ******************************************************************/
-  .font-sm, .sub-title, header .header_user_name, .chat_wrapper .chat__container {
-    font-size: 16px;
+  body {
+    font-size: 14px;
+  }
+  .font-sm, .btn-original a, .sub-title, .chat_wrapper .chat__container {
+    font-size: 14px;
   }
   .font-md {
     font-size: 19px;
   }
-  .font-lr, header .header_title {
+  .font-lr {
     font-size: 23px;
   }
   .font-lg, .page-title, .main-title {

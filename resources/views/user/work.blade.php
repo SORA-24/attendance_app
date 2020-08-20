@@ -19,8 +19,8 @@ $overtime = 0;
 
 <h2 class='main-title'>{{ $year.'年'.$month }}月勤務状況</h2>
 <div class="month">
-    <a class="btn" href="/work/{{ $year}}-{{ $month -1 }}">前月へ</a>
-    <a class="btn" href="/work/{{ $year}}-{{ $month +1 }}">次月へ</a>
+    <a class="btn btn-original" href="/work/{{ $year}}-{{ $month -1 }}">前月へ</a>
+    <a class="btn btn-original" href="/work/{{ $year}}-{{ $month +1 }}">次月へ</a>
 </div>
 <main>
     <div class="table_box">
@@ -137,6 +137,6 @@ $overtime = 0;
         <p>当月勤務状況　出勤数{{$num_attedance}}日　残業時間：{{floor($overtime / (60 * 60 )) ."時間". gmdate("i分" , $overtime)}}</p>
     </div>
 </main>
-<a class="btn" href="/top">戻る</a>
+<a class="btn btn-original" href="/top">戻る</a>
 @endsection
 

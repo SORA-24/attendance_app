@@ -10,11 +10,12 @@ class WorkStatusTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+        // リセット
         DB::table('work_statuses')->truncate();
+        // 入れ込む
         DB::table('work_statuses')->insert([
-            ['work_status' => '平日勤務'],
-            ['work_status' => '休日出勤'],
+            ['work_status' => '通常'],
             ['work_status' => '公休日'],
             ['work_status' => '有給申請中'],
             ['work_status' => '有給休暇'],
@@ -28,3 +29,5 @@ class WorkStatusTableSeeder extends Seeder
 // php artisan make:seeder WorkStatusTableSeeder
 // 実行
 // php artisan db:seed 
+// これだけ実行する場合
+// php artisan db:seed --class=WorkStatusTableSeeder

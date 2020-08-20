@@ -358,9 +358,13 @@ template {
   padding: 0;
 }
 a {
-  text-decoration: none;
+  text-decoration: none !important;
   color: #444;
   display: block;
+}
+
+li {
+  list-style: none;
 }
 
 ul,

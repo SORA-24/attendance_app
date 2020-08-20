@@ -93,8 +93,8 @@
     <section class="calendar">
         <table>
         <div class="month">
-            <a class="btn" href="/day/{{ $year}}-{{ $month -1 }}-{{$day}}">前月へ</a>
-            <a class="btn" href="/day/{{ $year}}-{{ $month +1 }}-{{$day}}">次月へ</a>
+            <a class="btn btn-original" href="/day/{{ $year}}-{{ $month -1 }}-{{$day}}">前月へ</a>
+            <a class="btn btn-original" href="/day/{{ $year}}-{{ $month +1 }}-{{$day}}">次月へ</a>
         </div>
             <tr>
                 @php 
@@ -135,5 +135,5 @@
         </table>
     </section>    
 </main>
-<a class="btn" href="/admin_top">戻る</a>
+<a class="btn btn-original" href="/admin_top">戻る</a>
 @endsection

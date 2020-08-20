@@ -11,9 +11,9 @@
     <main class="calendar">
         <table>
         <div class="month">
-            <a class="btn" href="/holiday/{{ $year}}-{{ $month -1 }}">前月へ</a>
+            <a class="btn btn-original" href="/holiday/{{ $year}}-{{ $month -1 }}">前月へ</a>
             <h5 class="main-title">{{$year . '年' . $month .'月' }}</h5>
-            <a class="btn" href="/holiday/{{ $year}}-{{ $month +1 }}">次月へ</a>
+            <a class="btn btn-original" href="/holiday/{{ $year}}-{{ $month +1 }}">次月へ</a>
         </div>
             <tr>
                 @php 
@@ -64,5 +64,5 @@
             </tr>
         </table>
     </main>
-        <a class="btn" href="/top">戻る</a>
+        <a class="btn btn-original" href="/top">戻る</a>
 @endsection

@@ -1,19 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     @yield('head')
 </head>
 <body>
-    <section class="side_menu">
-        <ul>
-            <li class="btn" ><a href="/top">トップページ</a></li>
-            <li class="btn" ><a href="/work">勤務管理ページ</a></li>
-            <li class="btn" ><a href="/holiday">休日申請ページ</a></li>
-        </ul>
     </section>
-    <header class='header'>
-        <h1 class='header_title'>勤怠システム</h1>
-        <p class='header_user_name'>現在のユーザー名: {{ Auth::user()->name }} </p>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="/top">勤怠管理システム</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav ">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
+                        <div class="dropdown-menu">
+                            <a class="btn btn-outline-secondary" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                ログアウト
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
+                    </li>
+                    <li class="nav-item active" ><a class="nav-link" href="/top">トップページ</a></li>
+                    <li class="nav-item" ><a class="nav-link" href="/work/{{ date('Y-n') }}">勤務管理ページ</a></li>
+                    <li class="nav-item" ><a class="nav-link" href="/holiday/{{ date('Y-n') }}">休日申請ページ</a></li>
+                    @if(Auth::user()->user_type == 2)
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">管理者メニュー</a>
+                        <div class="dropdown-menu">
+                        <a class="btn btn-outline-secondary" href="/day/{{ date('Y-m-d') }}">勤務情報</a>
+                        <a class="btn btn-outline-secondary" href="/user">ユーザ一覧</a>
+                        <a class="btn btn-outline-secondary" href="/application">申請確認</a>
+                        <a class="btn btn-outline-secondary" href="/admin/register">社員登録ページ</a>
+                        </div>
+                    </li>
+                    @endif
+                    
+                </ul>
+        </div>
+    </nav>
+        
     </header>
     <article class="wrapper">
         <div class="inner">
@@ -27,10 +59,7 @@
         </div>
     </article>
     <footer>
-        <form action="{{ url('/logout') }}" method="post">
-            {{ csrf_field() }}
-            <button type="submit">ログアウト</button>
-        </form>
+        © sora.inc
     </footer>
     <!-- bootstarap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -38,3 +67,16 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

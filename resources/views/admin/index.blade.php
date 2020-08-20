@@ -25,17 +25,17 @@
                 <li>
                     <h5 class='sub-title'>ユーザ機能</h5>
                     <ul>
-                        <li class="btn" ><a href="/work/{{ date('Y-n') }}">勤務管理ページ</a></li>
-                        <li class="btn" ><a href="/holiday/{{ date('Y-n') }}">休日申請ページ</a></li>
+                        <li class="btn btn-original" ><a href="/work/{{ date('Y-n') }}">勤務管理ページ</a></li>
+                        <li class="btn btn-original" ><a href="/holiday/{{ date('Y-n') }}">休日申請ページ</a></li>
                     </ul>
                 </li>
                 <li>
                     <h5 class="sub-title">管理者機能</h5>
                     <ul >
-                        <li class="btn" ><a href="/day/{{ date('Y-m-d') }}">勤務情報</a></li>
-                        <li class="btn" ><a href="/user">ユーザ一覧</a></li>
-                        <li class="btn" ><a href="/application">申請確認</a></li>
-                        <li class="btn" ><a href="/admin/register">社員登録ページ</a></li>
+                        <li class="btn btn-original" ><a href="/day/{{ date('Y-m-d') }}">勤務情報</a></li>
+                        <li class="btn btn-original" ><a href="/user">ユーザ一覧</a></li>
+                        <li class="btn btn-original" ><a href="/application">申請確認</a></li>
+                        <li class="btn btn-original" ><a href="/admin/register">社員登録ページ</a></li>
                     </ul>
                 </li>
                 <li>

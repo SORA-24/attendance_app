@@ -3,7 +3,7 @@ img {
   vertical-align: bottom;
 }
 .font-sm {
-  font-size: 14px;
+  font-size: 12px;
 }
 .font-md {
   font-size: 17px;
@@ -103,28 +103,19 @@ img {
 }
 
 // 共通コンテナ
-header,
+
 footer {
   background-color: #333;
   color: #fff;
   width: 100%;
   text-align: center;
   padding: 16px;
+  height: 100px;
 }
 
-header {
-  height: 100px;
-  color: #fff;
-  .header_title {
-    @extend .font-lr;
-  }
-  .header_user_name {
-    color: #fff;
-    @extend .font-sm;
-  }
-}
 .wrapper {
   width: 100%;
+  margin-top: 56px;
   @extend .pb-lg;
   padding-top: 32px;
   min-height: calc(100vh - 200px);
@@ -138,23 +129,7 @@ header {
 .wrap {
   padding: 16px;
 }
-footer {
-  height: 100px;
-}
-.side_menu {
-  width: 80%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  right: -80%;
-  background-color: #333;
-  color: #ddd;
-  // overflow: hidden;
-  transition: transform 1s ease;
-  &.is_open {
-    transform: translateX(-80%);
-  }
-}
+
 .table_box {
   width: 100%;
   overflow-x: scroll;
@@ -165,6 +140,15 @@ footer {
 }
 .search_box {
   @extend .mb-md;
+}
+.fixed-top {
+  .dropdown-menu {
+    padding-right: 8px;
+  }
+}
+.btn-outline-secondary {
+  width: 100%;
+  margin: 4px;
 }
 
 // トップページ

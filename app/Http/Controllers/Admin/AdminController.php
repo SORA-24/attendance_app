@@ -81,17 +81,23 @@ class AdminController extends Controller
         if(\Auth::user()->user_type == 1){
             return redirect('/top');
         }
-            $query = User::query();
+            $query = User::query(); 
+            // $query -> select('*' , 'users.id as user_id' , 'records.id as records_id' ,);
+            // $query->leftjoin('records' , function($join){
+            //     $join->on('users.id' ,'=', 'records.user_id')
+            //         ->where('records.work_status_id' , '5')
+            //         ->groupBy('user_id');
+            // });
         // inputで入力した文字を受け取る
             $search = $request->input('keyword_name');
         // ユーザ名を入力していなければ、すべてを取得する
         if($request->has('keyword_name') && $search != ''){
-            $query -> where('name' , 'like' , '%'.$search.'%')->get();
+            $query -> where('name' , 'like' , '%'.$search.'%')
+                ->get();
         }
         $data = $query->paginate(10);
         
         $title = "ユーザ一覧";
-        
         return view('admin.user' , [
             'title' => $title, 
             'data'=> $data,
@@ -114,7 +120,7 @@ class AdminController extends Controller
     }
     // 勤務員の詳細確認ページ
     public function work_index($user_id,$year,$month){
-        $title = "勤務状況確認ページ";
+        $title = "勤務状況確認ページ（管理者）";
         $records = \App\Record::whereMonth('date' , $month)
                     ->select('*' , 'records.id as record_id', 'work_statuses.id as work_status_id' )
                     ->leftjoin('work_statuses' ,'records.work_status_id' , 'work_statuses.id')
@@ -131,7 +137,7 @@ class AdminController extends Controller
         ]);       
     }
 
-
+    // 社員登録ページ
     public function user_register_index(){
         $title = '社員登録ページ';
         return view('admin.register',[
