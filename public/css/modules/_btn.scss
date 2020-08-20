@@ -1,0 +1,11 @@
+.btn {
+  display: block;
+  width: 150px;
+  box-shadow: 1px 2px #000;
+  border: 1px #000 solid;
+  padding: 4px 16px;
+  margin-bottom: 8px;
+  &:active {
+    box-shadow: inset 2px 1px #000;
+  }
+}

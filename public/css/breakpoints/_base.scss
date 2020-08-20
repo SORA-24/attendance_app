@@ -1,0 +1,270 @@
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+.font-sm {
+  font-size: 14px;
+}
+.font-md {
+  font-size: 17px;
+}
+.font-lr {
+  font-size: 17px;
+}
+.font-lg {
+  font-size: 25px;
+}
+.mb-sm {
+  margin-bottom: 16px !important;
+}
+.mb-md {
+  margin-bottom: 32px !important;
+}
+.mb-lg {
+  margin-bottom: 50px !important;
+}
+.pb-sm {
+  padding-bottom: 16px !important;
+}
+.pb-lg {
+  padding-bottom: 50px !important;
+}
+.content-width {
+  width: 90%;
+  margin: 0 auto;
+  max-width: $contentMaxWidth;
+}
+.page-title {
+  @extend .font-lg;
+  border-bottom: solid 1px $cBlack;
+  display: block;
+  @extend .pb-sm;
+  @extend .mb-md;
+}
+.main-title {
+  @extend .font-lg;
+  font-weight: 600;
+  margin-bottom: 0;
+  display: block;
+  @extend .pb-sm;
+}
+.sub-title {
+  @extend .font-sm;
+  color: $cSubTitle;
+}
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+// 共通スタイル
+.center_box {
+  display: block;
+  margin: 0 auto;
+}
+
+.red {
+  background-color: rgb(255, 188, 188);
+}
+.blue {
+  background-color: rgb(185, 224, 255);
+}
+.today_red {
+  background-color: rgb(255, 107, 22) !important;
+}
+
+.all-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 1000 !important;
+  background-color: $cWhite;
+  .msg-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    max-width: 400px;
+  }
+  .msg {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+  .input-btn {
+    display: block;
+    height: 40px;
+    width: 100%;
+  }
+}
+
+// 共通コンテナ
+header,
+footer {
+  background-color: #333;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  padding: 16px;
+}
+
+header {
+  height: 100px;
+  color: #fff;
+  .header_title {
+    @extend .font-lr;
+  }
+  .header_user_name {
+    color: #fff;
+    @extend .font-sm;
+  }
+}
+.wrapper {
+  width: 100%;
+  @extend .pb-lg;
+  padding-top: 32px;
+  min-height: calc(100vh - 200px);
+}
+.inner {
+  @extend .content-width;
+}
+.main {
+  width: 100%;
+}
+.wrap {
+  padding: 16px;
+}
+footer {
+  height: 100px;
+}
+.side_menu {
+  width: 80%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: -80%;
+  background-color: #333;
+  color: #ddd;
+  // overflow: hidden;
+  transition: transform 1s ease;
+  &.is_open {
+    transform: translateX(-80%);
+  }
+}
+.table_box {
+  width: 100%;
+  overflow-x: scroll;
+  th,
+  td {
+    white-space: nowrap;
+  }
+}
+.search_box {
+  @extend .mb-md;
+}
+
+// トップページ
+
+.chat_wrapper {
+  flex: 1;
+  .chat_title {
+    border: 2px solid;
+    margin: 0;
+    padding: 8px 0;
+    text-align: center;
+    background: #dee2e6;
+  }
+  .chat {
+    width: 100%;
+    max-height: 400px;
+    overflow-y: scroll;
+    border: $cBlack solid 2px;
+    @extend .mb-md;
+    &__container {
+      @extend .font-sm;
+      max-width: 80%;
+      margin-left: auto;
+      text-align: right;
+      @extend .mb-sm;
+
+      &.other {
+        margin-left: 0;
+        margin-right: auto;
+        text-align: left;
+        .chat {
+          &__message_block {
+            background-color: rgb(173, 229, 255);
+          }
+          &__sub {
+            text-align: left;
+          }
+        }
+      }
+    }
+    &__message_block {
+      display: inline-block;
+      border-radius: 9px;
+      border: 1px solid black;
+      padding: 6px;
+      margin: 0;
+      max-width: 100%;
+    }
+    &__message {
+      margin: 0;
+      word-wrap: break-word !important;
+    }
+    &__sub {
+      margin: 0 15px 0 15px;
+      text-align: right;
+      font-size: 0.5em;
+    }
+  }
+  .msg_send_box {
+    display: flex;
+    input[type="text"] {
+      flex: 1;
+    }
+  }
+}
+
+.attendance_box {
+  li {
+    margin-bottom: 16px;
+  }
+}
+
+// ワーク
+
+.status {
+  width: 100%;
+}
+// ワークページ
+.month {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  @extend .mb-sm;
+}
+
+// 休日申請ページ
+.calendar {
+  @extend .content-width;
+  @extend .mb-md;
+  &__week {
+    text-align: center;
+  }
+  &__submit {
+    display: block;
+    width: 100%;
+    padding: 4px 8px;
+    background: transparent;
+  }
+  td {
+    padding: 0;
+  }
+}
