@@ -56,7 +56,7 @@ class MessageController extends Controller
         $request->validate([
             'message' => 'required|max:1000',
         ]);
-        $message = new\App\Message;
+        $message = new \App\Message;
         $message->send_at_id = \Auth::user()->id; 
         $message->room_id = $request->room_id; 
         $message->message = $request->message; 

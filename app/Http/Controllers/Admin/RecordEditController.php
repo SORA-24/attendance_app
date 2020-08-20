@@ -33,28 +33,27 @@ class RecordEditController extends Controller
     public function edit_record(Request $request){
         $go_work = ($request->date.' '.$request->g_h.':'.$request->g_m.':'.$request->g_s );
         $leave_work = ($request->date.' '.$request->l_h.':'.$request->l_m.':'.$request->l_s );
-        $record = Record::query();
-        $record ->whereDate('date' , $request->date)
-                ->where('user_id' ,$request->user_id)
-                ->first();
-        if(isset($record->id)){
-            $record->update([
-                'work_status_id' => $request->work_status_id,
-                'go_work'=> $go_work,
-                'leave_work' => $leave_work,
-                'break_time' => $request->break_time,
-                ]);
-                session()->flash('flash_message', $request->date.'の勤務情報を更新しました。');
-        }else{
-            DB::table('records')-> insert([
-                'work_status_id' => $request->work_status_id,
+        if($request->g_h+$request->g_m+$request->g_s <= 0 ){
+            $go_work = null;
+        }
+        if($request->l_h+$request->l_m+$request->l_s <= 0 ){
+            $leave_work= null;
+        }
+        if($request->break_time <= 0){
+            $request->break_time = null;
+        }
+            DB::table('records')->updateOrInsert(
+                ['user_id' => $request->user_id, 'date' => $request->date],
+                ['work_status_id' => $request->work_status_id,
                 'go_work'=> $go_work,
                 'user_id' => $request->user_id,
                 'leave_work' => $leave_work,
                 'break_time' => $request->break_time,
+                'date' => $request->date,
+                'created_at' => now(),
+                'updated_at' => now(),
                 ]);
-                session()->flash('flash_message',$request->date.'の勤務情報を新たに入力しました。');
-        }        
+                session()->flash('flash_message',$request->date.'の勤務情報を更新しました。');       
         $y_m =  mb_substr($request->date , 0,7);
         return redirect('admin/user_id'.$request->user_id.'/'.$y_m);
     }
