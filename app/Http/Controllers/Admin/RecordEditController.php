@@ -37,7 +37,7 @@ class RecordEditController extends Controller
         $record ->whereDate('date' , $request->date)
                 ->where('user_id' ,$request->user_id)
                 ->first();
-        if(isset($record)){
+        if(isset($record->id)){
             $record->update([
                 'work_status_id' => $request->work_status_id,
                 'go_work'=> $go_work,
@@ -49,6 +49,7 @@ class RecordEditController extends Controller
             DB::table('records')-> insert([
                 'work_status_id' => $request->work_status_id,
                 'go_work'=> $go_work,
+                'user_id' => $request->user_id,
                 'leave_work' => $leave_work,
                 'break_time' => $request->break_time,
                 ]);

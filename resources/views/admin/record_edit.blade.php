@@ -127,6 +127,6 @@
     </div>
 </main>
 @php $date = date('Y-m' , strtotime($d) ) @endphp 
-<a class="btn" href="/admin/user_id{{ $record->user_id }}/{{ $date }}">戻る</a>
+<a class="btn btn-original" href="/admin/user_id{{ $record->user_id }}/{{ $date }}">戻る</a>
 
 @endsection
