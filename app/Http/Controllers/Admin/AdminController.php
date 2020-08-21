@@ -108,14 +108,20 @@ class AdminController extends Controller
         if(\Auth::user()->user_type == 1){
             return redirect('/top');
         }
-        $title = "休日申請一覧" ;
-        $data = DB::table('users')
+        $title = "申請一覧" ;
+        $holidays = DB::table('users')
             ->leftjoin('records' , 'records.user_id' ,"=" , 'users.id')
             ->where('work_status_id' , '4')
             ->get();
+        $overtimes = DB::table('overtimes')
+            ->select('*' , 'overtimes.id as overtime_id' , 'users.id as user_id')
+            ->leftjoin('users' , 'overtimes.user_id' ,"=" , 'users.id')
+            ->where('overtimes.status' , '1')
+            ->get();
             return view('admin.application' , [
                 'title' => $title,
-                'data' => $data,
+                'holidays' => $holidays,
+                'overtimes' => $overtimes,
             ]);
     }
     // 勤務員の詳細確認ページ
@@ -128,12 +134,17 @@ class AdminController extends Controller
                     ->get();
         $user = \App\User::where('id' , $user_id)
                 ->first();
+        $overtimes = DB::table('overtimes')
+                    ->whereMonth('date' ,$month)
+                    ->where('user_id' , $user_id )
+                    ->get();
         return view('user.work',[
             'title' => $title,
             'records' => $records ,
             'year' => $year,
             'month' => $month,
             'user' => $user,
+            'overtimes' => $overtimes,
         ]);       
     }
 

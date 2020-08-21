@@ -17,7 +17,7 @@
             <table>
                 <tr>
                 @php
-                    $ths = ['','勤務','ログイン状況','出勤時間','退勤時間','休憩時間','勤務時間','残業時間'];
+                    $ths = ['','勤務','出勤時間','退勤時間','休憩時間','勤務時間','申請残業時間'];
                 @endphp
                             @foreach($ths as $th)
                                 <th>{{ $th }}</th>
@@ -39,22 +39,12 @@
                         </td>
                         <td><!-- 2行目　勤務 -->
                         <select name="work_status_id">
-                            <option value="1">平日勤務</option>
-                            <option value="2">休日出勤</option>
-                            <option value="3">公休日</option>
-                            <option value="5">有給休暇</option>
+                            <option value="1">通常</option>
+                            <option value="2">公休日</option>
+                            <option value="3">有給申請中</option>
+                            <option value="4">有給休暇</option>
+                            <option value="5">欠勤</option>
                         </select>
-                        </td>
-                        <td>
-                            <!-- ログイン状況 -->
-                            @isset($record->go_work)
-                                @isset($record->leave_work)
-                                    退勤
-                                @endisset
-                                @empty($record->leave_work)
-                                    出勤中
-                                @endempty 
-                            @endisset
                         </td>
                             <!-- 出勤時間 -->
                         <td>
@@ -110,13 +100,12 @@
                             @endisset
                         </td>
                         <td>
-                            <!-- 残業時間 -->
-                            @isset($working)
-                                @component('components.time')
-                                    @slot('time' , $working - 60*60*8 )
-                                @endcomponent
-                            @endisset
-                            @php $working = null @endphp
+                        @isset($overtime)
+                            @php $val = strtotime("$overtime->endtime") - strtotime("$overtime->starttime") @endphp 
+                            @component('components.time')
+                                @slot('time' , $val)
+                            @endcomponent
+                        @endif
                         </td>
                 </tr>
             </table>

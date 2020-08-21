@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('id') ? ' has-error' : '' }}">
-                            <label for="id" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="id" class="col-md-4 control-label">職員番号</label>
 
                             <div class="col-md-6">
                                 <input id="id" type="id" class="form-control" name="id" value="{{ old('id') }}" required autofocus>
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <label for="password" class="col-md-4 control-label">パスワード</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -55,12 +55,30 @@
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <!-- <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Forgot Your Password?
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </form>
+                    <p>↓テストログインのユーザ情報です。</p>
+                        <table border=1>
+                        <tr>
+                            <th>権限</th>
+                            <th>ユーザID</th>
+                            <th>パスワード</th>
+                        </tr>
+                        <tr>
+                            <td>ユーザ</td>
+                            <td>2</td>
+                            <td>password</td>
+                        </tr>
+                        <tr>
+                            <td>管理者</td>
+                            <td>1</td>
+                            <td>password</td>
+                        </tr>
+                        </table>
                 </div>
             </div>
         </div>

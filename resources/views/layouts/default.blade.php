@@ -29,7 +29,14 @@
                     </li>
                     <li class="nav-item active" ><a class="nav-link" href="/top">トップページ</a></li>
                     <li class="nav-item" ><a class="nav-link" href="/work/{{ date('Y-n') }}">勤務管理ページ</a></li>
-                    <li class="nav-item" ><a class="nav-link" href="/holiday/{{ date('Y-n') }}">休日申請ページ</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">申請メニュー</a>
+                            <div class="dropdown-menu">
+                            <a class="btn btn-outline-secondary" href="/holiday/{{ date('Y-n') }}">休日申請ページ</a>
+                            <a class="btn btn-outline-secondary" href="/overtime">残業申請ページ</a>
+                            </div>
+                    </li>
+                    <li class="nav-item" ></li>
                     @if(Auth::user()->user_type == 2)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">管理者メニュー</a>

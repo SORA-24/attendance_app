@@ -13,11 +13,16 @@ class UserController extends Controller
                     ->leftjoin('work_statuses' ,'records.work_status_id' , '=', 'work_statuses.id' )
                     ->where('user_id' , \Auth::user()->id )
                     ->get();
+        $overtimes = DB::table('overtimes')
+                    ->whereMonth('date' ,$month)
+                    ->where('user_id' , \Auth::user()->id )
+                    ->get();
         return view('user.work',[
             'title' => $title,
             'records' => $records ,
             'year' => $year,
             'month' => $month,
+            'overtimes' => $overtimes,
         ]);        
     }
     // 休日申請ページ
