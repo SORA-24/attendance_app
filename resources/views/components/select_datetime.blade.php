@@ -26,7 +26,3 @@
         <option value="{{$m}}">{{$m}}</option>
     @endfor
 </select>
-<select name="{{$name}}_s">
-    <option value="{{$second}}">{{$second}}</option>
-    <option value="0">0</option>
-</select>

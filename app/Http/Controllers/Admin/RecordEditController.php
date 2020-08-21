@@ -35,8 +35,8 @@ class RecordEditController extends Controller
             ]);
     }
     public function edit_record(Request $request){
-        $go_work = ($request->date.' '.$request->g_h.':'.$request->g_m.':'.$request->g_s );
-        $leave_work = ($request->date.' '.$request->l_h.':'.$request->l_m.':'.$request->l_s );
+        $go_work = ($request->date.' '.$request->g_h.':'.$request->g_m.':0' );
+        $leave_work = ($request->date.' '.$request->l_h.':'.$request->l_m.':0' );
         if($request->g_h+$request->g_m+$request->g_s <= 0 ){
             $go_work = null;
         }

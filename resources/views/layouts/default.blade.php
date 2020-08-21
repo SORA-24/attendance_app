@@ -5,8 +5,7 @@
 </head>
 <body>
     </section>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <a class="navbar-brand" href="/top">勤怠管理システム</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -51,8 +50,6 @@
                     
                 </ul>
         </div>
-    </nav>
-        
     </header>
     <article class="wrapper">
         <div class="inner">
@@ -66,7 +63,9 @@
         </div>
     </article>
     <footer>
-        © sora.inc
+        <div class="small">
+            © sora.inc
+        </div>
     </footer>
     <!-- bootstarap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

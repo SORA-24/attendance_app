@@ -103,19 +103,27 @@ img {
 }
 
 // 共通コンテナ
-
+header {
+  height: 100px;
+}
 footer {
   background-color: #333;
   color: #fff;
   width: 100%;
-  text-align: center;
-  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100px;
+}
+.small {
+  @extend .font-sm;
+  display: block;
+  color: #fff;
 }
 
 .wrapper {
   width: 100%;
-  margin-top: 56px;
+  margin-top: 100px;
   @extend .pb-lg;
   padding-top: 32px;
   min-height: calc(100vh - 200px);

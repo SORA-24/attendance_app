@@ -17,7 +17,7 @@
         <div class="table_box">
             <table>
         @php
-            $ths = ['ID','氏名','勤務','ログイン状況','出勤時間','退勤時間','休憩時間','勤務時間','残業時間'];
+            $ths = ['ID','氏名','勤務','ログイン状況','出勤時間','退勤時間','休憩時間','勤務時間','実働残業時間'];
         @endphp
                 <tr>
                     @foreach($ths as $th)
@@ -57,31 +57,44 @@
                         <td>
                             <!-- 休憩時間 -->
                             @isset($value->break_time)
-                            @component('components.time')
-                                @slot('time' , $value->break_time)
-                            @endcomponent
+                                @component('components.time')
+                                    @slot('time' , $value->break_time)
+                                @endcomponent
                             @endisset
                         </td>
                         <td>
                             <!-- 勤務時間 => $working-->
-                            @isset($value->leave_work)
-                            @php 
-                            $working = strtotime($value->leave_work) - strtotime($value->go_work)- $value->break_time 
-                            @endphp
-                                @component('components.time')
-                                    @slot('time' , $working)
-                                @endcomponent
+                            @isset($value->go_work)
+                                @isset($value->leave_work)
+                                @php 
+                                $working = strtotime($value->leave_work) - strtotime($value->go_work)- $value->break_time 
+                                @endphp
+                                    @component('components.time')
+                                        @slot('time' , $working)
+                                    @endcomponent
+                                @endisset
+                                @empty($value->leave_work)
+                                @php 
+                                $working = strtotime(now()) - strtotime($value->go_work)- $value->break_time 
+                                @endphp
+                                    @component('components.time')
+                                        @slot('time' , $working)
+                                    @endcomponent
+                                @endempty
                             @endisset
                         </td>
                         <td>
-                            <!-- 残業時間 -->
+                            <!-- 実働残業 -->
                             @isset($working)
-                                @component('components.time')
-                                    @slot('time' , $working - 60*60*8 )
-                                @endcomponent
+                                @if($working - 60*60*8 > 0)
+                                    @component('components.time')
+                                        @slot('time' , $working - 60*60*8 )
+                                    @endcomponent
+                                @endif 
                             @endisset
                         </td>
                     </tr>
+                    @php $working = null @endphp 
                     @empty
                     @endforelse 
         </table>

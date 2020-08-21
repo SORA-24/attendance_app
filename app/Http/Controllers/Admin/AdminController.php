@@ -138,6 +138,7 @@ class AdminController extends Controller
                     ->whereMonth('date' ,$month)
                     ->where('user_id' , $user_id )
                     ->get();
+        $edit_status = true ;
         return view('user.work',[
             'title' => $title,
             'records' => $records ,
@@ -145,6 +146,7 @@ class AdminController extends Controller
             'month' => $month,
             'user' => $user,
             'overtimes' => $overtimes,
+            'edit_status' => $edit_status ,
         ]);       
     }
 

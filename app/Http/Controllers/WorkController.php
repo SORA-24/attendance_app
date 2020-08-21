@@ -15,6 +15,7 @@ class WorkController extends Controller
     // 打刻
     public function stamping(Request $request){    
         $day = date('d');
+        $work_status_id = (date('w') == 0 || date('w') == 6) ? 2 : 1 ;
         if(isset($request->go_work)){
             // 出勤
             $today = \App\Record::whereDay('date', $day)
@@ -25,7 +26,8 @@ class WorkController extends Controller
                 $work->user_id = \Auth::user()->id; 
                 $work->go_work = now();  
                 $work->date = date('Y-m-d');
-                $work->break_time = 0;  
+                $work->break_time = 0;
+                $work->work_status_id = $work_status_id;  
                 $work->save();
                 session()->flash('flash_message', '出勤しました');
             }else{

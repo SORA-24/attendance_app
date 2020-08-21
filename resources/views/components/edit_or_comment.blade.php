@@ -1,4 +1,4 @@
-@if( Auth::user()->user_type === 2 )
+@if( Auth::user()->user_type === 2 && isset($edit_status))
     @php $day = str_pad($i , 2 ,'0',STR_PAD_LEFT); @endphp
     <td>
     <form action="/admin/record_edit">
@@ -7,10 +7,10 @@
         <input type="submit" value="{{$i}}日を編集">
     </form>
     </td>
-@elseif( Auth::user()->user_type === 1 )
+@elseif(empty($edit_status))
     <td>
-    @isset($record -> comment)
-        {{$record -> comment}}
-    @endisset
+        @isset($record->comment)
+            {{$record->comment}}
+        @endisset
     </td>
 @endif

@@ -29,7 +29,7 @@ $overtime = 0;
             @php
                 $ths = ['','勤務','出勤時間','退勤時間','休憩時間','勤務時間','申請残業時間',];
             @endphp
-            @if( Auth::user()->user_type === 2 )
+            @if( Auth::user()->user_type === 2 && isset($edit_status) )
                     @php array_push($ths , '編集') @endphp
                 @else
                     @php array_push($ths , 'コメント') @endphp
