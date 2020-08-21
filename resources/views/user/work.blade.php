@@ -27,7 +27,7 @@ $overtime = 0;
         <table>
             <tr>
             @php
-                $ths = ['','勤務','出勤時間','退勤時間','休憩時間','勤務時間','残業時間',];
+                $ths = ['','勤務','出勤時間','退勤時間','休憩時間','勤務時間','申請残業時間',];
             @endphp
             @if( Auth::user()->user_type === 2 )
                     @php array_push($ths , '編集') @endphp
@@ -97,13 +97,15 @@ $overtime = 0;
                                     @endisset
                                 </td>
                                 <td>
-                                    <!-- 残業時間 -->
-                                    @isset($working)
-                                        @component('components.time')
-                                            @slot('time' , $working - 60*60*8 )
-                                        @endcomponent
-                                    @endisset
-                                    @php $working = null @endphp
+                                    <!-- 申請残業時間 -->
+                                    @foreach($overtimes as $val)
+                                        @if( substr($val->date ,-2 ,2 ) == str_pad($i ,2, 0, STR_PAD_LEFT))
+                                            @php $overtime = strtotime("$val->endtime") - strtotime("$val->starttime") @endphp 
+                                            @component('components.time')
+                                                @slot('time' , $overtime)
+                                            @endcomponent
+                                        @endif
+                                    @endforeach
                                 </td>
                                 @include('components.edit_or_comment')
                                 @break

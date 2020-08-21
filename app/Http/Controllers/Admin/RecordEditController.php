@@ -22,12 +22,16 @@ class RecordEditController extends Controller
         $query->leftJoin('work_statuses' , 'records.work_status_id','=','work_statuses.id');
         $query -> where('users.id' ,$request->user_id); 
         $record = $query->first();
-            // dd($record);
+        $overtime = DB::table('overtimes')
+                    ->WhereDate('date', $request->d )
+                    ->where('user_id' , $request->user_id )
+                    ->first();
         return view('admin.record_edit',[
                 'title' => $title,
                 'record' => $record,
                 'd' => $request->d,
                 'user_id' => $request->user_id,
+                'overtime' =>$overtime,
             ]);
     }
     public function edit_record(Request $request){

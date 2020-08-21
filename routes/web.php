@@ -21,6 +21,9 @@ Route::get('/work/{year}-{month}' , 'UserController@work_index');
 // 休日申請ページ
 Route::get('/holiday/{year}-{month}' ,'UserController@holiday_index');
 Route::post('/holiday/paid_holiday' , 'WorkController@paid_holiday_register');
+// 残業申請ページ
+Route::get('/overtime' , 'UserApplicationController@overtime_index');
+Route::post('/overtime/application' , 'UserApplicationController@overtime_application');
 
 // 仮置きadmin
 Route::get('/admin_top' , 'AdminController@index');

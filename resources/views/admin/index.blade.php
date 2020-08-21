@@ -27,6 +27,7 @@
                     <ul>
                         <li class="btn btn-original" ><a href="/work/{{ date('Y-n') }}">勤務管理ページ</a></li>
                         <li class="btn btn-original" ><a href="/holiday/{{ date('Y-n') }}">休日申請ページ</a></li>
+                        <li class="btn btn-original" ><a href="/overtime">残業申請ページ</a></li>
                     </ul>
                 </li>
                 <li>
