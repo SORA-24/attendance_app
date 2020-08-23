@@ -14,7 +14,7 @@ class ApplicationController extends Controller
         if(isset($request->record_id)){
         $register = DB::table('records')
             ->where('id' , $request->record_id)
-            ->update(['work_status_id' => 5] );
+            ->update(['work_status_id' => 4] );
             session()->flash('flash_message', '休日申請を登録しました');
         }elseif(isset($request->overtime_id)){
         $register = DB::table('overtimes')

@@ -11,9 +11,7 @@
                         @endif
                             <p class='chat__sub'>{{ $message->name}}</p>
                             <div class='chat__message_block'>
-                                <p class="chat__message">
-                                    {{ $message->message}}
-                                </p>
+                                <p class="chat__message">{{ $message->message}}</p>
                             </div>
                             <p class='chat__sub'>{{ $message->created_at}}</p>
                         </li>
@@ -25,7 +23,8 @@
             <form method='post' action="/top/message_add">
                 {{ csrf_field() }}
                 <div class='msg_send_box'>
-                    <input type="text" name="message" placeholder='メッセージを入力'>
+                    <textarea name="message" id="" cols="30" rows="2"
+                    placeholder='メッセージを入力'></textarea>
                     <input type="hidden" name="room_id" value='1'>
                     <input type="submit" value="送信">
                 </div>

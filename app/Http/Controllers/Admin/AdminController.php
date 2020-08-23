@@ -21,7 +21,7 @@ class AdminController extends Controller
         $messages = DB::table('messages')
                     ->join('users', 'messages.send_at_id','=','users.id')
                     ->get();
-        $record = \App\Record::whereDay('created_at', date('d'))
+        $record = \App\Record::whereDate('date', date('Y-m-d'))
                     ->where('user_id' , \Auth::user()->id )
                     ->first();
         if(isset($record)){
@@ -82,12 +82,6 @@ class AdminController extends Controller
             return redirect('/top');
         }
             $query = User::query(); 
-            // $query -> select('*' , 'users.id as user_id' , 'records.id as records_id' ,);
-            // $query->leftjoin('records' , function($join){
-            //     $join->on('users.id' ,'=', 'records.user_id')
-            //         ->where('records.work_status_id' , '5')
-            //         ->groupBy('user_id');
-            // });
         // inputで入力した文字を受け取る
             $search = $request->input('keyword_name');
         // ユーザ名を入力していなければ、すべてを取得する
@@ -95,12 +89,24 @@ class AdminController extends Controller
             $query -> where('name' , 'like' , '%'.$search.'%')
                 ->get();
         }
-        $data = $query->paginate(10);
-        
+            $data = $query->paginate(10);
+        $records = DB::table('records')
+                ->whereYear('date' , '2020')
+                ->whereMonth('date' , '8')
+                ->where('work_status_id' , 4)
+                ->get();
+        $overtimes = DB::table('overtimes')
+                ->whereYear('date' , '2020')
+                ->whereMonth('date' , '8')
+                ->where('status' , '2')
+                ->get();
+                // dd($overtimes);
         $title = "ユーザ一覧";
         return view('admin.user' , [
             'title' => $title, 
             'data'=> $data,
+            'records' => $records,
+            'overtimes' => $overtimes,
         ]);
     }
     // 申請確認ページ
@@ -111,7 +117,7 @@ class AdminController extends Controller
         $title = "申請一覧" ;
         $holidays = DB::table('users')
             ->leftjoin('records' , 'records.user_id' ,"=" , 'users.id')
-            ->where('work_status_id' , '4')
+            ->where('work_status_id' , '3')
             ->get();
         $overtimes = DB::table('overtimes')
             ->select('*' , 'overtimes.id as overtime_id' , 'users.id as user_id')
@@ -135,9 +141,9 @@ class AdminController extends Controller
         $user = \App\User::where('id' , $user_id)
                 ->first();
         $overtimes = DB::table('overtimes')
-                    ->whereMonth('date' ,$month)
-                    ->where('user_id' , $user_id )
-                    ->get();
+                ->whereMonth('date' ,$month)
+                ->where('user_id' , $user_id )
+                ->get();
         $edit_status = true ;
         return view('user.work',[
             'title' => $title,

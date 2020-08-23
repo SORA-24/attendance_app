@@ -24,7 +24,7 @@ class MessageController extends Controller
         $messages = DB::table('messages')
                     ->join('users', 'messages.send_at_id','=','users.id')
                     ->get();
-        $record = \App\Record::whereDay('created_at', date('d'))
+        $record = \App\Record::whereDate('date', date('Y-m-d'))
                     ->where('user_id' , \Auth::user()->id )
                     ->first();
         if(isset($record)){
