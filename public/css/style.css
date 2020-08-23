@@ -35,15 +35,15 @@ img {
   font-size: 25px;
 }
 
-.mb-sm, .chat_wrapper .chat__container, .month {
+.mb-sm, .chat_wrapper .chat__container, .month, .overtime__date, .overtime__starttime, .overtime__endtime, .overtime__reason {
   margin-bottom: 16px !important;
 }
 
-.mb-md, .page-title, .search_box, .chat_wrapper .chat, .calendar {
+.mb-md, .page-title, .search_box, .calendar {
   margin-bottom: 32px !important;
 }
 
-.mb-lg {
+.mb-lg, .overtime {
   margin-bottom: 50px !important;
 }
 
@@ -112,7 +112,7 @@ img {
   left: 0;
   width: 100vw !important;
   height: 100vh !important;
-  z-index: 1000 !important;
+  z-index: 1000000 !important;
   background-color: white;
 }
 
@@ -139,7 +139,7 @@ img {
 }
 
 header {
-  height: 100px;
+  min-height: 100px;
 }
 
 footer {
@@ -168,6 +168,10 @@ footer {
   margin-top: 100px;
   padding-top: 32px;
   min-height: calc(100vh - 200px);
+}
+
+.inner {
+  overflow: hidden;
 }
 
 .main {
@@ -248,8 +252,10 @@ footer {
 }
 
 .chat_wrapper .chat__message {
+  text-align: left;
   margin: 0;
-  word-wrap: break-word !important;
+  width: 100%;
+  white-space: pre-wrap;
 }
 
 .chat_wrapper .chat__sub {
@@ -264,10 +270,12 @@ footer {
   display: flex;
 }
 
-.chat_wrapper .msg_send_box input[type="text"] {
+.chat_wrapper .msg_send_box textarea {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  padding: 4px;
+  max-height: 3em;
 }
 
 .attendance_box li {
@@ -302,6 +310,24 @@ footer {
 
 .calendar td {
   padding: 0;
+}
+
+.overtime__date {
+  height: 2.5rem;
+}
+
+.overtime__reason {
+  width: 80%;
+}
+
+.overtime__starttime {
+  margin-right: 16px;
+}
+
+.overtime__select-time {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 @media screen and (min-width: 600px) {
@@ -347,7 +373,7 @@ Stylesheet: 960px以上のモニタで適用
   .font-lg, .page-title, .main-title {
     font-size: 36px;
   }
-  .mb-lg {
+  .mb-lg, .overtime {
     margin-bottom: 80px !important;
   }
   .pb-lg, .wrapper {

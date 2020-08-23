@@ -80,7 +80,7 @@ class WorkController extends Controller
             $holiday = new \App\Record;
             $holiday->user_id = \Auth::user()->id;
             $holiday->date = $request->holiday;
-            $holiday->work_status_id = 4;
+            $holiday->work_status_id = 3;
             $holiday -> save();
             session()->flash('flash_message', '休日申請が完了しました');
             return redirect('/top');

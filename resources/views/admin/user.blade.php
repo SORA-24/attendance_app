@@ -2,7 +2,7 @@
 @include('head.head')
 @section('title' , $title)
 @section('content')
-<?php $ths = ["ID","氏名","残業時間","年休取得数","詳細ページ"]?> 
+<?php $ths = ["ID","氏名","月間残業時間","月間年休取得数","詳細ページ"]?> 
 <h1>{{ "７月".$title }}</h1>
     @foreach($errors->all() as $error)
         <p class="error">{{ $error }}</p>
@@ -28,8 +28,29 @@
                     <tr>
                         <td>{{ $val -> id}}</td>
                         <td>{{ $val -> name}}</td>
-                        <td></td>
-                        <td></td>
+                        <td>
+                            @php $month_overtime = 0 @endphp 
+                            @foreach($overtimes as $o)
+                                @if($o->user_id == $val ->id)
+                                    @php
+                                        $day_overtime = strtotime($o->endtime) - strtotime($o->starttime);
+                                        $month_overtime +=  $day_overtime ;
+                                    @endphp
+                                @endif
+                            @endforeach
+                                @component('components.time')
+                                    @slot('time' , $month_overtime)
+                                @endcomponent
+                        </td>
+                        <td>
+                            @php $holiday_count = 0 @endphp 
+                            @foreach($records as $record)
+                                @if($record->user_id == $val->id)
+                                    @php $holiday_count++ @endphp
+                                @endif
+                            @endforeach
+                            {{ $holiday_count }} 
+                        </td>
                         <td>
                             <a href="/admin/user_id{{$val->id}}/{{date('Y-m')}}">詳細</a>
                         </td>
@@ -40,3 +61,11 @@
 </main>
 <a class="btn btn-original" href="/admin_top">戻る</a>
 @endsection
+
+
+
+
+
+
+
+

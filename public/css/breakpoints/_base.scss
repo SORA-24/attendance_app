@@ -80,7 +80,7 @@ img {
   left: 0;
   width: 100vw !important;
   height: 100vh !important;
-  z-index: 1000 !important;
+  z-index: 1000000 !important;
   background-color: $cWhite;
   .msg-box {
     position: absolute;
@@ -104,7 +104,7 @@ img {
 
 // 共通コンテナ
 header {
-  height: 100px;
+  min-height: 100px;
 }
 footer {
   background-color: #333;
@@ -130,6 +130,7 @@ footer {
 }
 .inner {
   @extend .content-width;
+  overflow: hidden;
 }
 .main {
   width: 100%;
@@ -175,7 +176,6 @@ footer {
     max-height: 400px;
     overflow-y: scroll;
     border: $cBlack solid 2px;
-    @extend .mb-md;
     &__container {
       @extend .font-sm;
       max-width: 80%;
@@ -206,8 +206,10 @@ footer {
       max-width: 100%;
     }
     &__message {
+      text-align: left;
       margin: 0;
-      word-wrap: break-word !important;
+      width: 100%;
+      white-space: pre-wrap;
     }
     &__sub {
       margin: 0 15px 0 15px;
@@ -217,8 +219,10 @@ footer {
   }
   .msg_send_box {
     display: flex;
-    input[type="text"] {
+    textarea {
       flex: 1;
+      padding: 4px;
+      max-height: 3em;
     }
   }
 }
@@ -260,3 +264,29 @@ footer {
     padding: 0;
   }
 }
+
+//残業申請ページ
+.overtime {
+  @extend .mb-lg;
+  &__date {
+    height: 2.5rem;
+    @extend .mb-sm;
+  }
+
+  &__starttime,
+  &__endtime,
+  &__reason {
+    @extend .mb-sm;
+  }
+  &__reason {
+    width: 80%;
+  }
+  &__starttime {
+    margin-right: 16px;
+  }
+  &__select-time {
+    justify-content: flex-start;
+  }
+}
+
+// 申請登録
