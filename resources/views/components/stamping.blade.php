@@ -2,10 +2,10 @@
     <form method='post' action="/top/stamping">
         {{ csrf_field() }}
         @isset($record->go_work)
-        <input type="submit" name='leave_work' value="退勤">
+        <input class="btn btn-outline-dark" type="submit" name='leave_work' value="退勤">
         @endisset
         @empty($record->temporarily)
-        <input type="submit" name='stop_work' value="休憩">
+        <input class="btn btn-outline-primary" type="submit" name='stop_work' value="休憩">
         @endempty
         @empty($record->go_work)
         <div class='all-bg'>

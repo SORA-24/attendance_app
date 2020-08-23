@@ -20,9 +20,13 @@
                                         document.getElementById('logout-form').submit();">
                                 ログアウト
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
+                            </form>
+                            <form method='post' action="/top/stamping">
+                                {{ csrf_field() }}
+                            <input class="btn btn-outline-dark" type="submit" name='leave_work' value="退勤">
+                            <input class="btn btn-outline-primary" type="submit" name='stop_work' value="休憩">
                             </form>
                         </div>
                     </li>

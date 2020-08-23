@@ -25,10 +25,13 @@
     <!-- ホーム画面 -->
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <div class="wrap">
-                @if(count($holidays) > 0 && count ($overtimes) > 0)
+                @if(count($holidays) > 0) 
                     <p>休日申請数 : {{ count($holidays) }} 件</p>
+                @endif
+                @if(count ($overtimes) > 0)
                     <p>残業申請数 : {{ count($overtimes) }} 件</p>
-                @else
+                @endif
+                @if(count($holidays) < 1 && count ($overtimes) < 1) 
                 <p>現在申請されている情報はありません</p>
                 @endif
         </div>
@@ -52,7 +55,7 @@
                 <td><form action="/application/register" method="post">
                 {{csrf_field()}}
                     <input type="hidden" name="record_id" value="{{ $val->id }}">
-                    <input type="submit" value="登録">
+                    <input class="btn btn-outline-success" type="submit" value="登録">
                 </form></td>
                 </tr>
                 @endforeach
@@ -83,7 +86,7 @@
             {{csrf_field()}}
                 <input type="hidden" name="user_id" value="{{ $val->user_id }}">
                 <input type="hidden" name="overtime_id" value="{{ $val->overtime_id }}">
-                <input type="submit" value="登録">
+                <input class="btn btn-outline-success" type="submit" value="登録">
             </form></td>
             </tr>
             @endforeach

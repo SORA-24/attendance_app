@@ -52,7 +52,7 @@
                             {{ $holiday_count }} 
                         </td>
                         <td>
-                            <a href="/admin/user_id{{$val->id}}/{{date('Y-m')}}">詳細</a>
+                            <a class="btn btn-outline-info" href="/admin/user_id{{$val->id}}/{{date('Y-m')}}">詳細</a>
                         </td>
                     </tr>
                 @endforeach
