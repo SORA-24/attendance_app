@@ -18,11 +18,14 @@ class UserController extends Controller
                     ->whereMonth('date' ,$month)
                     ->where('user_id' , \Auth::user()->id )
                     ->get();
+        $user = \App\User::where('id' , \Auth::user()->id)
+                    ->first();
         return view('user.work',[
             'title' => $title,
             'records' => $records ,
             'year' => $year,
             'month' => $month,
+            'user' => $user,
             'overtimes' => $overtimes,
         ]);        
     }
