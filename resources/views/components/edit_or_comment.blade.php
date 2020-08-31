@@ -3,7 +3,7 @@
     <td>
     <form action="/admin/record_edit">
         <input type="hidden" name="d" value="{{$year}}-{{$month}}-{{$day}}" >
-        <input type="hidden" name="user_id" value="{{$record->user_id}}">
+        <input type="hidden" name="user_id" value="{{$user->id}}">
         <input type="submit" value="{{$i}}日を編集">
     </form>
     </td>

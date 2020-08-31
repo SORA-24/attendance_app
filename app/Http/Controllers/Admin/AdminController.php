@@ -145,6 +145,7 @@ class AdminController extends Controller
                 ->where('user_id' , $user_id )
                 ->get();
         $edit_status = true ;
+        // dd($user);
         return view('user.work',[
             'title' => $title,
             'records' => $records ,

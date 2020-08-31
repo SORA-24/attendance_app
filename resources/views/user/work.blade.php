@@ -18,9 +18,15 @@ $sum_overtime = 0;
 @endforeach
 
 <h2 class='main-title'>{{ $year.'年'.$month }}月勤務状況</h2>
+<h5>{{ $user->name }}さんの勤務状況</h5>
 <div class="month">
-    <a class="btn btn-original" href="/work/{{ $year}}-{{ $month -1 }}">前月へ</a>
-    <a class="btn btn-original" href="/work/{{ $year}}-{{ $month +1 }}">次月へ</a>
+@if( Auth::user()->user_type === 2 && isset($edit_status))
+    <a class="btn btn-outline-info" href="/admin/user_id{{$user->id}}/{{ $year}}-{{ $month -1 }}">前月へ</a>
+    <a class="btn btn-outline-info" href="/admin/user_id{{$user->id}}/{{ $year}}-{{ $month +1 }}">次月へ</a>
+@else
+    <a class="btn btn-original" href="/work/{{ $year }}-{{ $month -1 }}">前月へ</a>
+    <a class="btn btn-original" href="/work/{{ $year }}-{{ $month +1 }}">次月へ</a>
+@endif
 </div>
 <main>
     <div class="table_box">
@@ -29,7 +35,7 @@ $sum_overtime = 0;
             @php
                 $ths = ['','勤務','出勤時間','退勤時間','休憩時間','勤務時間','申請残業時間',];
             @endphp
-            @if( Auth::user()->user_type === 2 && isset($edit_status) )
+            @if( Auth::user()->user_type === 2 && isset($edit_status))
                     @php array_push($ths , '編集') @endphp
                 @else
                     @php array_push($ths , 'コメント') @endphp
@@ -146,21 +152,22 @@ $sum_overtime = 0;
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>   <!-- 申請残業時間 -->
-                                    @foreach($overtimes as $val)
-                                        @if( substr($val->date ,-2 ,2 ) == str_pad($i ,2, 0, STR_PAD_LEFT))
-                                            @php 
-                                            $overtime = strtotime("$val->endtime") - strtotime("$val->starttime");
-                                            $sum_overtime += $overtime;
-                                            @endphp 
-                                            @component('components.time')
-                                                @slot('time' , $overtime)
-                                            @endcomponent
-                                        @endif
-                                    @endforeach
-                                </td>
+                        <td>
+                        <!-- 申請残業時間 -->
+                        @foreach($overtimes as $val)
+                            @if( substr($val->date ,-2 ,2 ) == str_pad($i ,2, 0, STR_PAD_LEFT))
+                                @php 
+                                $overtime = strtotime("$val->endtime") - strtotime("$val->starttime");
+                                $sum_overtime += $overtime;
+                                @endphp 
+                                @component('components.time')
+                                    @slot('time' , $overtime)
+                                @endcomponent
+                            @endif
+                        @endforeach</td>
+                        <td>
+                        @include('components.edit_or_comment')
+                        </td>
                     @endforelse
                 </tr>
             @endfor
