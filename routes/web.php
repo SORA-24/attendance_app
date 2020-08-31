@@ -16,11 +16,13 @@ Route::get('/', 'MessageController@index')->name('home');
 Route::get('/top' , 'MessageController@index');
 Route::post('/top/message_add' , 'MessageController@create');
 Route::post('/top/stamping' , 'WorkController@stamping');
+Route::post('/top/add_comment' , 'WorkController@addcomment');
+
 // 勤怠管理ページ
 Route::get('/work/{year}-{month}' , 'UserController@work_index');
 // 休日申請ページ
 Route::get('/holiday/{year}-{month}' ,'UserController@holiday_index');
-Route::post('/holiday/paid_holiday' , 'WorkController@paid_holiday_register');
+Route::post('/holiday/paid_holiday' , 'UserApplicationController@paid_holiday_register');
 // 残業申請ページ
 Route::get('/overtime' , 'UserApplicationController@overtime_index');
 Route::post('/overtime/application' , 'UserApplicationController@overtime_application');

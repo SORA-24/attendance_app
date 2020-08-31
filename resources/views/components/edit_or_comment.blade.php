@@ -10,7 +10,14 @@
 @elseif(empty($edit_status))
     <td>
         @isset($record->comment)
-            {{$record->comment}}
-        @endisset
-    </td>
-@endif
+            <!-- Small button groups (default and split) -->
+            <div class="btn-group">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">コメント...</button>
+                <div class="dropdown-menu comment-wrapper">
+                    <div class="dropdown-item comment" >{{$record->comment}}</div>
+                    <!-- <a class="dropdown-item" href="#">編集</a> -->
+                </div>
+            </div>
+            @endisset
+        </td>
+        @endif

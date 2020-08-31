@@ -72,19 +72,13 @@ class WorkController extends Controller
         }
             return redirect('/top');
     }
-    //休日申請
-    public function paid_holiday_register(Request $request){
-        $request->validate([
-            'holiday' => 'required|date|after:tomorrow',
-        ]);
-            $holiday = new \App\Record;
-            $holiday->user_id = \Auth::user()->id;
-            $holiday->date = $request->holiday;
-            $holiday->work_status_id = 3;
-            $holiday -> save();
-            session()->flash('flash_message', '休日申請が完了しました');
-            return redirect('/top');
-            
+    public function addcomment(Request $request){
+        $comment = DB::table('records')
+            ->whereDate('date' , date('Y-m-d'))
+            ->where('user_id' , \Auth::user()->id)
+            ->update(['comment' => $request->comment]);
+        session()->flash('flash_message','コメントを記録しました');
+        return redirect('/top');
     }
     
 }

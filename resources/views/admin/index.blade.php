@@ -5,7 +5,7 @@
 @include('head.head')
 
 @section('content')
-<!-- 管理者用ページ -->
+<!-- ユーザページ -->
     <h1 class='page-title'>{{ $title}}</h1>
     <!-- エラ〜メッセージを出力 -->
     @foreach($errors->all() as $error)
@@ -41,6 +41,11 @@
                 </li>
                 <li>
                     @component('components.stamping')
+                        @slot('record' ,$record)
+                    @endcomponent
+                </li>
+                <li>
+                    @component('components.addcomment')
                         @slot('record' ,$record)
                     @endcomponent
                 </li>
