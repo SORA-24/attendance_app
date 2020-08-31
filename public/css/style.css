@@ -35,7 +35,7 @@ img {
   font-size: 25px;
 }
 
-.mb-sm, .chat_wrapper .chat__container, .month, .overtime__date, .overtime__starttime, .overtime__endtime, .overtime__reason {
+.mb-sm, .chat_wrapper .chat__container, .comment-wrapper .comment, .month, .overtime__date, .overtime__starttime, .overtime__endtime, .overtime__reason {
   margin-bottom: 16px !important;
 }
 
@@ -280,6 +280,18 @@ footer {
 
 .attendance_box li {
   margin-bottom: 16px;
+}
+
+.comment-wrapper {
+  width: 400px;
+}
+
+.comment-wrapper .comment {
+  padding: 4px;
+  min-height: 100px;
+  width: 100%;
+  white-space: pre-wrap;
+  overflow: scroll;
 }
 
 .status {

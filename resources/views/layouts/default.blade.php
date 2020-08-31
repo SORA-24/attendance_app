@@ -61,7 +61,7 @@
             @if (session('flash_message'))
             <div class="flash_message alert alert-primary" role="alert">
                     {{ session('flash_message') }}
-                </div>
+            </div>
             @endif
             @yield('content')
         </div>

@@ -37,6 +37,7 @@ class AdminController extends Controller
             $record =  "";
             $leave_work = "";
         }
+        // dd($record);
         return view('admin.index',[
             'title' => $title,
             'messages' => $messages, 

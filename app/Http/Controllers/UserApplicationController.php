@@ -14,7 +14,7 @@ class UserApplicationController extends Controller
             'title' => $title,
         ]);
     }
-
+    // 残業申請
     public function overtime_application(ApplicationRequest $request){
 
         $starttime = date('Y-m-d H:i:s' , strtotime($request->date.''.$request->start_h.':'.$request->start_m.':00') );
@@ -34,5 +34,19 @@ class UserApplicationController extends Controller
             session()->flash('flash_message' , '申請中にエラーが発生しました。');
         }
         return redirect('/overtime');
+    }
+    //休日申請
+    public function paid_holiday_register(Request $request){
+        $request->validate([
+            'holiday' => 'required|date|after:tomorrow',
+        ]);
+            $holiday = new \App\Record;
+            $holiday->user_id = \Auth::user()->id;
+            $holiday->date = $request->holiday;
+            $holiday->work_status_id = 3;
+            $holiday -> save();
+            session()->flash('flash_message', '休日申請が完了しました');
+            return redirect('/top');
+            
     }
 }

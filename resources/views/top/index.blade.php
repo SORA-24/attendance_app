@@ -31,6 +31,11 @@
                         @slot('record' ,$record)
                     @endcomponent
                 </li>
+                <li>
+                    @component('components.addcomment')
+                        @slot('record' ,$record)
+                    @endcomponent
+                </li>
             </ul>
         </section>       
     </main>

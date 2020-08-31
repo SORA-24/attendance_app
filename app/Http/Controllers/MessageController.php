@@ -1,14 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use DB;
-use App\Quotation;
+use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-
     public function __construct()
     {
         // ログインのチェック
