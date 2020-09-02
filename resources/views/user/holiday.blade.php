@@ -9,12 +9,13 @@
     <p class="error alert alert-danger" role="alert">{{ $error }}</p>
     @endforeach
     <main class="calendar">
+        <h5>{{ $year ."年". $month ."月"}}</h5>
+        @component('components.monthbtn')
+            @slot('year' , $year )
+            @slot('month' , $month )
+            @slot('page' , 'holiday')
+        @endcomponent
         <table>
-        <div class="month">
-            <a class="btn btn-original" href="/holiday/{{ $year}}-{{ $month -1 }}">前月へ</a>
-            <h5 class="main-title">{{$year . '年' . $month .'月' }}</h5>
-            <a class="btn btn-original" href="/holiday/{{ $year}}-{{ $month +1 }}">次月へ</a>
-        </div>
             <tr>
                 @php 
                 $day_weeks = ['日','月','火','水','木','金','土'] 

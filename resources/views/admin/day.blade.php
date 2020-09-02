@@ -105,10 +105,12 @@
 
     <section class="calendar">
         <table>
-        <div class="month">
-            <a class="btn btn-original" href="/day/{{ $year}}-{{ $month -1 }}-{{$day}}">前月へ</a>
-            <a class="btn btn-original" href="/day/{{ $year}}-{{ $month +1 }}-{{$day}}">次月へ</a>
-        </div>
+        @component('components.monthbtn')
+            @slot('year' , $year )
+            @slot('month' , $month )
+            @slot('day' , $day)
+            @slot('page' , 'day')
+        @endcomponent
             <tr>
                 @php 
                 $day_weeks = ['日','月','火','水','木','金','土'] 

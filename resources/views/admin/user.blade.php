@@ -17,10 +17,11 @@
             </form>
         </div>
     </div>
-    <div class="month">
-        <a class="btn btn-original" href="/user/{{$year}}-{{$month - 1}}">前月へ</a>
-        <a class="btn btn-original" href="/user/{{$year}}-{{$month + 1}}">次月へ</a>
-    </div>
+    @component('components.monthbtn')
+        @slot('year' , $year )
+        @slot('month' , $month )
+        @slot('page' , 'user')
+    @endcomponent
     <div class="table_box">
         <table>
             <tr>
