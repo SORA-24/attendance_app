@@ -32,7 +32,7 @@ Route::get('/admin_top' , 'AdminController@index');
 // 勤務管理ページ
 Route::get('/day/{year}-{month}-{day}' , 'AdminController@day_index');
 // ユーザ一覧確認
-Route::get('/user' , 'AdminController@user_index');
+Route::get('/user/{year}-{month}' , 'AdminController@user_index');
 // 休日申請登録
 Route::get('/application' , 'AdminController@application_index');
 Route::post('/application/register' , 'Admin\ApplicationController@paid_holidays_register');

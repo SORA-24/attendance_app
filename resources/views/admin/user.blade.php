@@ -3,7 +3,7 @@
 @section('title' , $title)
 @section('content')
 <?php $ths = ["ID","氏名","月間残業時間","月間年休取得数","詳細ページ"]?> 
-<h1>{{ "７月".$title }}</h1>
+<h1>{{ $year."年".$month . "月".$title }}</h1>
     @foreach($errors->all() as $error)
         <p class="error">{{ $error }}</p>
     @endforeach
@@ -11,11 +11,15 @@
 <main>
     <div>
         <div class="search_box">
-            <form action="/user" >
+            <form action="/user/{{$year}}-{{$month}}" >
                 <input type="search" name="keyword_name" placeholder='氏名を入力してください' class='content-width'>
                 <input type="submit" value="検索">
             </form>
         </div>
+    </div>
+    <div class="month">
+        <a class="btn btn-original" href="/user/{{$year}}-{{$month - 1}}">前月へ</a>
+        <a class="btn btn-original" href="/user/{{$year}}-{{$month + 1}}">次月へ</a>
     </div>
     <div class="table_box">
         <table>
