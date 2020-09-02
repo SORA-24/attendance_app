@@ -78,7 +78,7 @@ class AdminController extends Controller
 
     }
     // ユーザ一覧ページ
-    public function user_index(Request $request){
+    public function user_index($year ,$month , Request $request){
         if(\Auth::user()->user_type == 1){
             return redirect('/top');
         }
@@ -92,13 +92,13 @@ class AdminController extends Controller
         }
             $data = $query->paginate(10);
         $records = DB::table('records')
-                ->whereYear('date' , '2020')
-                ->whereMonth('date' , '8')
+                ->whereYear('date' , $year )
+                ->whereMonth('date' , $month )
                 ->where('work_status_id' , 4)
                 ->get();
         $overtimes = DB::table('overtimes')
-                ->whereYear('date' , '2020')
-                ->whereMonth('date' , '8')
+                ->whereYear('date' , $year )
+                ->whereMonth('date' , $month )
                 ->where('status' , '2')
                 ->get();
                 // dd($overtimes);
@@ -108,6 +108,8 @@ class AdminController extends Controller
             'data'=> $data,
             'records' => $records,
             'overtimes' => $overtimes,
+            'year'=> $year,
+            'month'=> $month,
         ]);
     }
     // 申請確認ページ

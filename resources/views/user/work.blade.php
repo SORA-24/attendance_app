@@ -144,7 +144,7 @@ $sum_overtime = 0;
                                         @endif
                                     @endforeach
                                 </td>
-                               　<td></td>
+                                @include('components.edit_or_comment')
                                 @break
                             @endif
                     @empty{{--そもそも一つもデータが無かった場合--}}
