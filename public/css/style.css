@@ -282,14 +282,10 @@ footer {
   margin-bottom: 16px;
 }
 
-.comment-wrapper {
-  width: 400px;
-}
-
 .comment-wrapper .comment {
+  width: 300px;
   padding: 4px;
   min-height: 100px;
-  width: 100%;
   white-space: pre-wrap;
   overflow: scroll;
 }
