@@ -21,11 +21,17 @@ $sum_overtime = 0;
 <h5>{{ $user->name }}さんの勤務状況</h5>
 <div class="month">
 @if( Auth::user()->user_type === 2 && isset($edit_status))
-    <a class="btn btn-outline-info" href="/admin/user_id{{$user->id}}/{{ $year}}-{{ $month -1 }}">前月へ</a>
-    <a class="btn btn-outline-info" href="/admin/user_id{{$user->id}}/{{ $year}}-{{ $month +1 }}">次月へ</a>
+    @component('components.monthbtn')
+            @slot('year' , $year )
+            @slot('month' , $month )
+            @slot('page' , "admin/user_id".$user->id)
+    @endcomponent
 @else
-    <a class="btn btn-original" href="/work/{{ $year }}-{{ $month -1 }}">前月へ</a>
-    <a class="btn btn-original" href="/work/{{ $year }}-{{ $month +1 }}">次月へ</a>
+        @component('components.monthbtn')
+            @slot('year' , $year )
+            @slot('month' , $month )
+            @slot('page' , 'work')
+        @endcomponent
 @endif
 </div>
 <main>

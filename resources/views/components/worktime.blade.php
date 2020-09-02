@@ -56,14 +56,3 @@
         @endisset
     </div>
 </li>
-<li>
-    <div>
-        現在の合計休憩時間
-        <!-- 休憩時間 -->
-        @isset($record->break_time)
-            @component('components.time')
-                @slot('time' , $record->break_time)
-            @endcomponent
-        @endisset
-    </div>
-</li>
